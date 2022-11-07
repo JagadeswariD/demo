@@ -1,3 +1,5 @@
+
+
 server:
   port: 1234
   servlet:
@@ -16,8 +18,7 @@ spring:
   jpa.hibernate.ddl-auto: none
   jpa.defer-datasource-initialization: true
   sql.init.mode: always
-java:
-    runtime.version: 11
+
  # jpa.open-in-view : false
 logging:
   file:
