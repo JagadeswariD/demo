@@ -23,6 +23,12 @@
 	</properties>
 	<dependencies>
 		<dependency>
+    <groupId>io.freefair.lombok</groupId>
+    <artifactId>io.freefair.lombok.gradle.plugin</artifactId>
+    <version>6.5.1</version>
+    <type>pom</type>
+</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
