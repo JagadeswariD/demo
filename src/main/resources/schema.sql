@@ -3,11 +3,20 @@
 -- Table: public.tbl_lms_user
 
  DROP TABLE IF EXISTS public.tbl_lms_user Cascade;
-
+ 
+CREATE SEQUENCE IF NOT EXISTS public.tbl_lms_user_user_id_seq
+    START WITH  11  /* plz give the no of rows in ur user table + 1 */
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+		
 CREATE TABLE IF NOT EXISTS public.tbl_lms_user
 (
     user_id character varying COLLATE pg_catalog."default" NOT NULL,
     user_first_name character varying COLLATE pg_catalog."default" NOT NULL,
+	user_middle_name character varying COLLATE pg_catalog."default",
     user_last_name character varying COLLATE pg_catalog."default" NOT NULL,
     user_phone_number numeric NOT NULL,
     user_location character varying COLLATE pg_catalog."default" NOT NULL,
@@ -23,6 +32,12 @@ CREATE TABLE IF NOT EXISTS public.tbl_lms_user
     CONSTRAINT time_zone_chk CHECK (user_time_zone::text = ANY (ARRAY['PST'::character varying::text, 'MST'::character varying::text, 'CST'::character varying::text, 'EST'::character varying::text, 'IST'::character varying::text])),
     CONSTRAINT visa_status_chk CHECK (user_visa_status::text = ANY (ARRAY['Not-Specified'::character varying::text, 'NA'::character varying::text, 'GC-EAD'::character varying::text, 'H4-EAD'::character varying::text, 'H4'::character varying::text, 'H1B'::character varying::text, 'Canada-EAD'::character varying::text, 'Indian-Citizen'::character varying::text, 'US-Citizen'::character varying::text, 'Canada-Citizen'::character varying::text]))
 );
+
+
+ALTER SEQUENCE public.tbl_lms_user_user_id_seq OWNED BY public.tbl_lms_user.user_id;
+ALTER TABLE public.tbl_lms_user_user_id_seq OWNER TO postgres;
+
+
 -- SEQUENCE: public.tbl_lms_program_program_id_seq
  DROP TABLE IF EXISTS public.tbl_lms_program Cascade;
  --DROP SEQUENCE IF EXISTS public.tbl_lms_program_program_id_seq;
